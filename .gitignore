@@ -250,3 +250,8 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# Custom ignores
+Y2-Direct3D11/shaders/Passthrough_VS.h
+Y2-Direct3D11/shaders/Passthrough_PS.h
+Y2-Direct3D11/VS/Y2-D3D11.vcxproj.filters

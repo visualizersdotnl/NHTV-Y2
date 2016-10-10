@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Y2-D3D11", "Y2-D3D11.vcxproj", "{57EE147C-D746-4F45-91ED-8EE978193154}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Design|x64 = Design|x64
+		Design|x86 = Design|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57EE147C-D746-4F45-91ED-8EE978193154}.Debug|x64.ActiveCfg = Debug|x64
+		{57EE147C-D746-4F45-91ED-8EE978193154}.Debug|x64.Build.0 = Debug|x64
+		{57EE147C-D746-4F45-91ED-8EE978193154}.Debug|x86.ActiveCfg = Debug|Win32
+		{57EE147C-D746-4F45-91ED-8EE978193154}.Debug|x86.Build.0 = Debug|Win32
+		{57EE147C-D746-4F45-91ED-8EE978193154}.Design|x64.ActiveCfg = Design|x64
+		{57EE147C-D746-4F45-91ED-8EE978193154}.Design|x64.Build.0 = Design|x64
+		{57EE147C-D746-4F45-91ED-8EE978193154}.Design|x86.ActiveCfg = Design|Win32
+		{57EE147C-D746-4F45-91ED-8EE978193154}.Design|x86.Build.0 = Design|Win32
+		{57EE147C-D746-4F45-91ED-8EE978193154}.Release|x64.ActiveCfg = Release|x64
+		{57EE147C-D746-4F45-91ED-8EE978193154}.Release|x64.Build.0 = Release|x64
+		{57EE147C-D746-4F45-91ED-8EE978193154}.Release|x86.ActiveCfg = Release|Win32
+		{57EE147C-D746-4F45-91ED-8EE978193154}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
