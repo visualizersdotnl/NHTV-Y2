@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="/code">
+      <UniqueIdentifier>{b2d3414e-7d13-4d4a-aa98-e230b882aac4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="/code\/platform">
+      <UniqueIdentifier>{0ea05402-5330-4d88-a9bd-1df161d2a4a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="/code\/D3D">
+      <UniqueIdentifier>{6044fbca-f970-4225-b76a-eb48274e9a2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="/3rdparty">
+      <UniqueIdentifier>{05509a2b-2bfb-4095-9b48-6a6b39964e88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="/3rdparty\Std3DMath">
+      <UniqueIdentifier>{3f6af90e-5cf2-4ca3-8e36-726730e36198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="/Resources">
+      <UniqueIdentifier>{3d99a57b-c932-429c-b181-9976f48c2e11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="/shaders">
+      <UniqueIdentifier>{973d2df6-e521-4c74-82b6-3b0a00620620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="/shaders\Generated">
+      <UniqueIdentifier>{9ccd4195-83a5-458a-b2a9-66bdffa5f58b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="/shaders\Precompiled">
+      <UniqueIdentifier>{4edc5a9c-05c3-4c83-8bf4-e0318fe13a7e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\code\D3D.cpp">
+      <Filter>/code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\DXGI.cpp">
+      <Filter>/code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\SetupDialog.cpp">
+      <Filter>/code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Win32.cpp">
+      <Filter>/code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\Std3DMath\Matrix44.cpp">
+      <Filter>/3rdparty\Std3DMath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\Std3DMath\Quaternion.cpp">
+      <Filter>/3rdparty\Std3DMath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\Std3DMath\Vector3.cpp">
+      <Filter>/3rdparty\Std3DMath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\World.cpp">
+      <Filter>/code</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\code\D3D.h">
+      <Filter>/code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\DXGI.h">
+      <Filter>/code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\SetupDialog.h">
+      <Filter>/code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Win32.h">
+      <Filter>/code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\platform\CPUID.h">
+      <Filter>/code\/platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Platform.h">
+      <Filter>/code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Settings.h">
+      <Filter>/code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Platform\Assert.h">
+      <Filter>/code\/platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Platform\ComPtr.h">
+      <Filter>/code\/platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Platform\DebugLog.h">
+      <Filter>/code\/platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Platform\Noncopyable.h">
+      <Filter>/code\/platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Platform\StringUtil.h">
+      <Filter>/code\/platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Platform\Timer.h">
+      <Filter>/code\/platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\Std3DMath\Dependencies.h">
+      <Filter>/3rdparty\Std3DMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\Std3DMath\Math.h">
+      <Filter>/3rdparty\Std3DMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\Std3DMath\Matrix44.h">
+      <Filter>/3rdparty\Std3DMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\Std3DMath\Quaternion.h">
+      <Filter>/3rdparty\Std3DMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\Std3DMath\Vector2.h">
+      <Filter>/3rdparty\Std3DMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\Std3DMath\Vector3.h">
+      <Filter>/3rdparty\Std3DMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\Std3DMath\Vector4.h">
+      <Filter>/3rdparty\Std3DMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\resource.h">
+      <Filter>/Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\D3D\RenderTarget.h">
+      <Filter>/code\/D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\D3D\Buffers.h">
+      <Filter>/code\/D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\Passthrough_PS.h">
+      <Filter>/shaders\Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shaders\Passthrough_VS.h">
+      <Filter>/shaders\Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\World.h">
+      <Filter>/code</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\3rdparty\Std3DMath\LICENSE">
+      <Filter>/3rdparty\Std3DMath</Filter>
+    </None>
+    <None Include="..\3rdparty\Std3DMath\README.md">
+      <Filter>/3rdparty\Std3DMath</Filter>
+    </None>
+    <None Include="..\shaders\Passthrough_VS.inc">
+      <Filter>/shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\App.ico">
+      <Filter>/Resources</Filter>
+    </Image>
+    <Image Include="Resources\ConfigSplash.bmp">
+      <Filter>/Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources\App.rc">
+      <Filter>/Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\shaders\Passthrough_PS.hlsl">
+      <Filter>/shaders\Precompiled</Filter>
+    </FxCompile>
+    <FxCompile Include="..\shaders\Passthrough_VS.hlsl">
+      <Filter>/shaders\Precompiled</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>

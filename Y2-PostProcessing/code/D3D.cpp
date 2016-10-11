@@ -1,7 +1,7 @@
 
 /*
 	Year 2 Direct3D 11 workshop template.
-	D3D - Core single-thread Direct3D 11 device management and glorified triangle renderer.
+	D3D - Core single-thread Direct3D 11 device management.
 
 	A few things are checked by ASSERT() instead of an error check, as they simply should not fail.
 	Otherwise it's food for the generic exception handler in Win32.cpp!
@@ -15,28 +15,20 @@
 #include "D3D.h"
 #include "Settings.h"
 
-// Sub-classes.
-#include "D3D/RenderTarget.h"
-
-// This is some code that nicely encapsulates different kind of Direct3D buffers using a template.
-// It's not used yet.
-// #include "D3D/Buffers.h"
-
 // Include headers with the passtrough shader bytecode.
-namespace VS { 
-	#include "../shaders/Passthrough_VS.h" 
-}
-
-namespace PS { 
-	#include "../shaders/Passthrough_PS.h" 
-}
+#include "../shaders/Passthrough_VS.h" 
+#include "../shaders/Passthrough_PS.h" 
 
 namespace D3D
 {
 	// Local copies.
-	static ID3D11Device        *s_pDev       = nullptr;
-	static ID3D11DeviceContext *s_pContext   = nullptr;
+	static ID3D11Device        *s_pDev = nullptr;
+	static ID3D11DeviceContext *s_pContext = nullptr;
 	static IDXGISwapChain      *s_pSwapChain = nullptr;
+
+	// Device & context access.
+	ID3D11Device *GetDevice() { ASSERT(nullptr != s_pDev); return s_pDev; }
+	ID3D11DeviceContext *GetContext() { ASSERT(nullptr != s_pContext); return s_pContext; }
 
 	// Resources.
 	// This won't scale well at all, so I'd advise wrapping them in renderer-specific objects.
@@ -58,20 +50,16 @@ namespace D3D
 	const Vector3 kQuadVertices[] =
 	{
 		Vector3(-1.f,  1.f, 0.f), // 0
-		Vector3( 1.f,  1.f, 0.f), // 1
-		Vector3( 1.f, -1.f, 0.f), // 3
+		Vector3(1.f,  1.f, 0.f), // 1
+		Vector3(1.f, -1.f, 0.f), // 3
 		Vector3(-1.f,  1.f, 0.f), // 0
-		Vector3( 1.f, -1.f, 0.f), // 3
+		Vector3(1.f, -1.f, 0.f), // 3
 		Vector3(-1.f, -1.f, 0.f), // 2						
 	};
 
 	const D3D11_INPUT_ELEMENT_DESC kElements[] = {
 		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	};
-
-	// Accessors.
-	ID3D11Device *GetDevice() { ASSERT(nullptr != s_pDev); return s_pDev; }
-	ID3D11DeviceContext *GetContext() { ASSERT(nullptr != s_pContext); return s_pContext; }
 
 	bool Create(ID3D11Device *pDevice, ID3D11DeviceContext *pContext, IDXGISwapChain *pSwapChain, const DXGI_SAMPLE_DESC &multiDesc,
 		float renderAspectRatio /* Content */, float displayAspectRatio /* Physical */)
@@ -130,8 +118,8 @@ namespace D3D
 		// Fetch back buffer dimensions.
 		D3D11_TEXTURE2D_DESC backbufferDesc;
 		s_pBackBuffer->GetTexture()->GetDesc(&backbufferDesc);
-		const float viewWidth = (float) backbufferDesc.Width;
-		const float viewHeight = (float) backbufferDesc.Height;
+		const float viewWidth = (float)backbufferDesc.Width;
+		const float viewHeight = (float)backbufferDesc.Height;
 
 		// Define full viewport (covering the entire back buffer).
 		s_backVP.TopLeftX = 0.f;
@@ -162,6 +150,8 @@ namespace D3D
 			xResAdj = s_backVP.Width;
 			yResAdj = s_backVP.Height;
 		}
+
+		// FIXME: bars on both sides?
 
 		// Back buffer viewport adjusted to fit scene.
 		s_backAdjVP.Width = xResAdj;
@@ -205,7 +195,7 @@ namespace D3D
 		// Create small vertex buffer for 2 triangles.
 		D3D11_BUFFER_DESC bufferDesc;
 		bufferDesc.Usage = D3D11_USAGE_DEFAULT; // D3D11_USAGE_IMMUTABLE;
-		bufferDesc.ByteWidth = (UINT) 6*sizeof(Vector3);
+		bufferDesc.ByteWidth = (UINT)6 * sizeof(Vector3);
 		bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 		bufferDesc.CPUAccessFlags = 0;
 		bufferDesc.MiscFlags = 0;
@@ -216,7 +206,6 @@ namespace D3D
 		bufferData.SysMemPitch = 0;
 		bufferData.SysMemSlicePitch = 0;
 
-//		ID3D11Buffer *s_pQuadVB = nullptr;
 		VERIFY(S_OK == s_pDev->CreateBuffer(&bufferDesc, &bufferData, &s_pQuadVB));
 
 		// Create an input layout for the vertex buffer (describing what exactly this buffer contains).
@@ -225,12 +214,12 @@ namespace D3D
 		};
 
 		// This is verified against the vertex shader's signature.
-		HRESULT hResult = s_pDev->CreateInputLayout(elemDesc, 1, VS::g_main, sizeof(VS::g_main), &s_pInputLayout);
+		HRESULT hResult = s_pDev->CreateInputLayout(elemDesc, 1, g_Passthrough_VS, sizeof(g_Passthrough_VS), &s_pInputLayout);
 		ASSERT(S_OK == hResult);
 
-		// Create passthrough shaders.
-		VERIFY(S_OK == s_pDev->CreateVertexShader(VS::g_main, sizeof(VS::g_main), nullptr, &s_pVertexShader));
-		VERIFY(S_OK == s_pDev->CreatePixelShader(PS::g_main, sizeof(PS::g_main), nullptr, &s_pPixelShader));
+		// Create passthrough shaders (model 4.0).
+		VERIFY(S_OK == s_pDev->CreateVertexShader(g_Passthrough_VS, sizeof(g_Passthrough_VS), nullptr, &s_pVertexShader));
+		VERIFY(S_OK == s_pDev->CreatePixelShader(g_Passthrough_PS, sizeof(g_Passthrough_PS), nullptr, &s_pPixelShader));
 
 		// Exercise to the reader: 
 		// - Create and use a 2D texture.
@@ -251,8 +240,7 @@ namespace D3D
 		delete s_pBackBuffer;
 	}
 
-	// Draw our frame (in this case, stupid triangle).
-	void RenderFrame()
+	void BeginFrame()
 	{
 		// Set full viewport.
 		s_pContext->RSSetViewports(1, &s_backVP);
@@ -265,6 +253,25 @@ namespace D3D
 		// Set adjusted viewport.
 		s_pContext->RSSetViewports(1, &s_backAdjVP);
 
+		// FIXME (test!)
+		DrawQuad();
+	}
+
+	void EndFrame()
+	{
+		// Restore full viewport.
+		s_pContext->RSSetViewports(1, &s_backVP);
+	}
+
+	// Call only if a frame has been drawn, and, the output window has focus.
+	void Flip(unsigned int syncInterval)
+	{
+		const HRESULT hRes = s_pSwapChain->Present(syncInterval, 0);
+		ASSERT(S_OK == hRes); // FIXME!
+	}
+
+	void DrawQuad()
+	{
 		// Bind quad vertex buffer.
 		const UINT stride = sizeof(Vector3); // Size of each element (a single 3D point).
 		const UINT offset = 0;
@@ -279,15 +286,5 @@ namespace D3D
 
 		// Draw it, without using an index buffer.
 		s_pContext->Draw(6, 0);
-
-		// Restore full viewport.
-		s_pContext->RSSetViewports(1, &s_backVP);
-	}
-
-	// Call only if a frame has been drawn, and, the output window has focus.
-	void Flip(unsigned int syncInterval)
-	{
-		const HRESULT hRes = s_pSwapChain->Present(syncInterval, 0);
-//		ASSERT(S_OK == hRes); // FIXME!
 	}
 }
